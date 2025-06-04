@@ -15,4 +15,4 @@ const relogio = setInterval(function time() {
     horas.textContent = hora;
     minutos.textContent = minuto;
     segundos.textContent = segundo;
-})
+}) 

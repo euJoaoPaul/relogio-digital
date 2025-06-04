@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -12,22 +13,25 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
 .relogio {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 200px;
-    width: 550px;
+    max-width: 550px;
+    width: 90%;
+    padding: 15px 10px;
     background: transparent;
     border-radius: 3px;
     box-shadow: 0px 8px 10px rgba(0, 0, 0, .5);
+    gap: 15px;
 }
 
 .relogio div {
-    height: 170px;
-    width: 150px;
+    flex-grow: 1;
+    flex-basis: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,13 +41,85 @@ body {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, .7);
     border-radius: 7px;
     letter-spacing: 3px;
+    padding: 15px 10px;
 }
 
 .relogio span {
     font-weight: bolder;
-    font-size: 60px;
+    /* Opção A: Comece com um valor fixo em desktop, ajuste em media queries */
+    font-size: 60px; /* Fonte para telas grandes */
+    /* OU */
+    /* Opção B: Use vw para o desktop também, mas esteja ciente que pode ficar gigante em monitores muito largos */
+    /* font-size: 6vw; */ 
 }
 
 .relogio span.tempo {
-    font-size: 10px;
+    /* Opção A: Comece com um valor fixo em desktop, ajuste em media queries */
+    font-size: 10px; /* Fonte para telas grandes */
+    /* OU */
+    /* Opção B: Use vw para o desktop também */
+    /* font-size: 2vw; */ 
+    margin-top: 5px;
+}
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERIES PARA RESPONSIVIDADE */
+/* ---------------------------------------------------- */
+
+/* Para telas menores que 650px (tablets pequenos e smartphones na horizontal) */
+@media screen and (max-width: 650px) {
+    .relogio {
+        flex-wrap: wrap; 
+        gap: 10px; 
+        height: auto; 
+        padding: 10px; 
+    }
+
+    .relogio div {
+        flex-basis: calc(33.33% - 10px); 
+        min-width: 100px; 
+        padding: 10px 0px; 
+    }
+
+    .relogio span {
+        /* Ajusta a fonte para esta faixa de tela */
+        font-size: 8vw; /* Ou um valor fixo em px, ex: 40px */
+    }
+
+    .relogio span.tempo {
+        /* Ajusta a fonte da legenda para esta faixa de tela */
+        font-size: 2.5vw; /* Ou um valor fixo em px, ex: 8px */
+    }
+}
+
+/* Para telas muito pequenas (smartphones na vertical) */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .relogio {
+        flex-direction: column; /* Empilha os blocos verticalmente */
+        gap: 10px;
+        max-width: 95%; 
+        padding: 10px;
+    }
+
+    .relogio div {
+        width: 100%; 
+        min-width: unset; 
+        height: auto; 
+        padding: 15px 0; 
+        flex: none; 
+    }
+
+    .relogio span {
+        /* Ajusta a fonte para esta faixa de tela */
+        font-size: 10vw; /* Ou um valor fixo em px, ex: 50px */
+    }
+
+    .relogio span.tempo {
+        /* Ajusta a fonte da legenda para esta faixa de tela */
+        font-size: 3vw; /* Ou um valor fixo em px, ex: 10px */
+    }
 }
